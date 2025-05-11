@@ -1,13 +1,8 @@
 "use client";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext, Lecture } from "@/context/AppContext";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-
-// Define the Chapter type
-type Chapter = {
-    title: string;
-};
 
 const CourseDetailsPage = () => {
     const params = useParams();
@@ -64,9 +59,12 @@ const CourseDetailsPage = () => {
                 <h2 className="text-lg font-bold mb-4">Course Content</h2>
                 {courseDetails.courseContent?.length > 0 ? (
                     <ul className="space-y-2">
-                        {courseDetails.courseContent?.map((lesson: Chapter, index: number) => (
+                        {courseDetails.courseContent?.map((lecture: Lecture, index: number) => (
                             <li key={index} className="p-2 border rounded">
-                                {lesson.title}
+                                <div className="flex justify-between items-center">
+                                    <span>{lecture.title}</span>
+                                    <span className="text-sm text-gray-500">{lecture.lectureDuration}</span>
+                                </div>
                             </li>
                         ))}
                     </ul>

@@ -4,6 +4,11 @@ import { AppContext, Lecture } from "@/context/AppContext";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 
+// Define the Chapter type
+type Chapter = {
+    title: string;
+};
+
 const CourseDetailsPage = () => {
     const params = useParams();
     const courseId = params.id as string;
@@ -59,7 +64,7 @@ const CourseDetailsPage = () => {
                 <h2 className="text-lg font-bold mb-4">Course Content</h2>
                 {courseDetails.courseContent?.length > 0 ? (
                     <ul className="space-y-2">
-                        {courseDetails.courseContent.map((lesson: Lecture, index: number) => (
+                        {courseDetails.courseContent?.map((lesson: Chapter, index: number) => (
                             <li key={index} className="p-2 border rounded">
                                 {lesson.title}
                             </li>

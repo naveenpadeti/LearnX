@@ -1,0 +1,20 @@
+import express from 'express';
+import authRoute from "./routes/authRoute";
+import userRouter from "./routes/userRoute";
+import instructorRoute from "./routes/instructorRoute";
+import adminRoute from "./routes/adminRoute";
+import mentorRoute from "./routes/mentorRoute";
+import cors from "cors";
+const port = process.env.PORT || 9000;
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/auth", authRoute);
+app.use("/api",userRouter);
+app.use("/ins",instructorRoute);
+app.use("/mtr",mentorRoute);
+app.use("/admin",adminRoute);
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
